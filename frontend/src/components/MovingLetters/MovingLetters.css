@@ -1,0 +1,21 @@
+.moving-letters-container {
+  position: relative;
+  overflow: hidden;
+  width: auto;
+  height: 200px;
+}
+
+.moving-line {
+  position: absolute;
+  top: 50%;
+  font-size: 20px;
+  color: black;
+  white-space: nowrap;
+  animation: moveLine 30s linear infinite;
+}
+
+@keyframes moveLine {
+  to {
+    transform: translateX(100%);
+  }
+}
