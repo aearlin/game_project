@@ -1,9 +1,8 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import getLetters from './get-letters';
 
 const router = express.Router();
 
-router.get('/data', (req: Request, res: Response) => {
-  res.json({ message: 'API route is working!' });
-});
+router.get('/letters', getLetters);
 
 export default router;

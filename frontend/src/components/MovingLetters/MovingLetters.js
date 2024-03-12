@@ -26,34 +26,34 @@ const MovingLetters = () => {
     if (!containerRef.current) {
       return;
     }
-  
+
     const containerWidth = containerRef.current.clientWidth;
-    const lineWidth = lettersArray.join('').length * 20; // Assuming 20px per letter (adjust as needed)
+    const lineWidth = lettersArray.join('').length * 20; // Assuming 20px per letter
     const maxPosition = Math.max(0, containerWidth - lineWidth);
-  
+
     let startTime;
     const animate = (timestamp) => {
       if (!startTime) {
         startTime = timestamp;
       }
-  
+
       const elapsed = timestamp - startTime;
       const progress = (elapsed / 1000) % 30; // Adjust to match the CSS duration
       const newPosition = (progress * maxPosition) / 30;
-  
+
       // Handle loop-around
       setPosition(Math.round(newPosition));
-  
+
       requestAnimationFrame(animate);
     };
-  
+
     requestAnimationFrame(animate);
-    
+
     return () => {
       // Cleanup logic if needed
     };
   }, [lettersArray, containerRef]);
-  
+
   return (
     <div className="moving-letters-container" ref={containerRef}>
       <div className="moving-line" style={{ left: `${position}px` }}>

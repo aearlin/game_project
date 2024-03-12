@@ -14,11 +14,7 @@ app.use(bodyParser.json({ limit: "5mb" }));
 app.use(bodyParser.urlencoded({ limit: "5mb", extended: true }));
 
 app.use(cors());
-app.use('/api', router);
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+app.use('/', router);
 
 mongoose.connect(process.env.MONGODB_URI || '')
   .then(() => {
