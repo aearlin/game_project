@@ -9,4 +9,4 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchLetters = () => API.get("/letters");
+export const fetchLetters = () => API.get("/api/letters");
