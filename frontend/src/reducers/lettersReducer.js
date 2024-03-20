@@ -5,8 +5,6 @@ const initialState = {
 };
 
 const lettersReducer = (state = initialState, action) => {
-  console.log('lettersReducer action:', action);
-
   switch (action.type) {
     case UPDATE_LETTERS:
       return { ...state, lettersArray: action.data.lettersArray };
