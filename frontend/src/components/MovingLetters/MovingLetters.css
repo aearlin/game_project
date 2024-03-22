@@ -3,6 +3,8 @@
   overflow: hidden;
   width: auto;
   height: 200px;
+  padding: 0 50px;
+  box-sizing: border-box;
 }
 
 .moving-line {

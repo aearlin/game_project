@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getLetters } from '../../actions/getLetters';
+import { getLetters } from '../../actions/get-letters-action';
 import './MovingLetters.css';
 
 const MovingLetters = () => {
@@ -8,6 +8,7 @@ const MovingLetters = () => {
   const [lettersArray, setLettersArray] = useState([]);
   const [position, setPosition] = useState(0);
   const containerRef = useRef(null);
+  const [maxPosition, setMaxPosition] = useState(0);
 
   useLayoutEffect(() => {
     const fetchData = async () => {
@@ -23,13 +24,22 @@ const MovingLetters = () => {
   }, [dispatch]);
 
   useLayoutEffect(() => {
-    if (!containerRef.current) {
-      return;
-    }
+    const handleResize = () => {
+      if (!containerRef.current) {
+        return;
+      }
 
-    const containerWidth = containerRef.current.clientWidth;
-    const lineWidth = lettersArray.join('').length * 20; // Assuming 20px per letter
-    const maxPosition = Math.max(0, containerWidth - lineWidth);
+      const containerWidth = containerRef.current.clientWidth;
+      const lineWidth = lettersArray.join('').length * 25; // Assuming 30px per letter
+      const newMaxPosition = Math.max(0, containerWidth - lineWidth);
+      setMaxPosition(newMaxPosition);
+    };
+
+    // Call handleResize once initially
+    handleResize();
+
+    // Listen to window resize event
+    window.addEventListener('resize', handleResize);
 
     let startTime;
     const animate = (timestamp) => {
@@ -50,9 +60,9 @@ const MovingLetters = () => {
     requestAnimationFrame(animate);
 
     return () => {
-      // Cleanup logic if needed
+      window.removeEventListener('resize', handleResize);
     };
-  }, [lettersArray, containerRef]);
+  }, [lettersArray, containerRef, maxPosition]);
 
   return (
     <div className="moving-letters-container" ref={containerRef}>
