@@ -1,1 +1,3 @@
-export const UPDATE_LETTERS = 'UPDATE_LETTERS'; 
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const UPDATE_LETTERS = 'UPDATE_LETTERS';
