@@ -11,3 +11,6 @@ API.interceptors.request.use((req) => {
 });
 
 export const fetchLetters = () => API.get("/api/letters");
+export const signup = (formData) => API.post("/api/auth/signup", formData);
+export const login = (formData) => API.post("/api/auth/login", formData);
+export const changePassword = (formData) => API.post("/api/auth/change-password", formData);
